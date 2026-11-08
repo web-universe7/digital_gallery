@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Meet Gaurav of GT Photo Studio, Atpadi, and explore our photography services.">
+  <title>Owner &amp; Services | GT Photo Studio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="garden" aria-hidden="true"></canvas>
+
+  <nav class="top-actions" aria-label="Page actions">
+    <a class="top-action" href="index.html">Home</a>
+    <a class="top-action" href="#services" aria-current="location">Services</a>
+    <button id="themeBtn" class="theme-btn" type="button" aria-label="Switch theme">
+      <span id="themeIcon" aria-hidden="true">🌙</span>
+      <span id="themeLabel">Night garden</span>
+    </button>
+  </nav>
+
+  <main class="owner-page">
+    <header class="owner-card">
+      <div class="owner-photo-frame">
+        <img src="photos/owner.jpg" alt="Gaurav, owner of GT Photo Studio">
+      </div>
+      <div class="owner-info">
+        <h1>GT Photo Studio</h1>
+        <p>Meet Gaurav, photographer and owner of GT Photo Studio in Atpadi.</p>
+        <p><a class="ghost" href="index.html">Back to gallery</a></p>
+      </div>
+    </header>
+
+    <section class="owner-section" id="services" aria-labelledby="servicesTitle">
+      <h2 id="servicesTitle">Photography Services</h2>
+      <ul class="owner-services">
+        <li>Wedding Photography</li>
+        <li>Pre-wedding Shoots</li>
+        <li>Engagement Photography</li>
+        <li>Maternity Photoshoots</li>
+        <li>Baby Shower Photography</li>
+        <li>Newborn Photography</li>
+        <li>Birthday Photography</li>
+        <li>Family Portraits</li>
+        <li>Event Photography</li>
+        <li>Product Photography</li>
+        <li>Drone Photography</li>
+        <li>Cinematic Videography</li>
+      </ul>
+    </section>
+
+    <section class="owner-section owner-contact" aria-labelledby="contactTitle">
+      <h2 id="contactTitle">Website Work &amp; Contact</h2>
+      <p>For website work and enquiries, call <a href="tel:+917745036055">7745036055</a>.</p>
+    </section>
+
+    <section class="owner-section" id="privacy" aria-labelledby="privacyTitle">
+      <h2 id="privacyTitle">Privacy Policy</h2>
+      <p>This site does not ask visitors to submit personal information. The gallery remembers the selected theme in your browser and keeps its unlock status only for the current browser session. Calling or opening WhatsApp uses those external services and their privacy policies.</p>
+    </section>
+  </main>
+
+  <footer class="owner-footer">
+    <nav aria-label="Owner page links">
+      <a href="index.html">Gallery</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="tel:+917745036055">Contact</a>
+    </nav>
+    <p>&copy; 2026 GT Photo Studio, Atpadi. All rights reserved.</p>
+  </footer>
+
+  <script src="garden.js"></script>
+  <script>
+    const root = document.documentElement;
+    const themeIcon = document.getElementById("themeIcon");
+    const themeLabel = document.getElementById("themeLabel");
+
+    function applyTheme(theme) {
+      root.dataset.theme = theme;
+      themeIcon.textContent = theme === "day" ? "🌙" : "☀️";
+      themeLabel.textContent = theme === "day" ? "Night garden" : "Day garden";
+      try { localStorage.setItem("gallery-theme", theme); } catch (error) {}
+    }
+
+    let savedTheme = "day";
+    try { savedTheme = localStorage.getItem("gallery-theme") || "day"; } catch (error) {}
+    applyTheme(savedTheme === "night" ? "night" : "day");
+
+    document.getElementById("themeBtn").addEventListener("click", () => {
+      applyTheme(root.dataset.theme === "day" ? "night" : "day");
+    });
+  </script>
+</body>
+</html>
